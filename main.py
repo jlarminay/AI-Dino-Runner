@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from functions.imageModifier import *
 from functions.fileWriter import *
 from functions.windowManager import *
+from functions.calculations import *
+from functions.ai import *
 
 load_dotenv()
 
@@ -64,47 +66,18 @@ while(games < maxGames):
       ['data/bird1.jpg', (0,77,89)], #pink
       ['data/bird2.jpg', (0,77,89)], #pink
     ]
-    close1Distance = 10000
-    close1Position = 0
-    close2Distance = 10000
-    close2Position = 0
-    foundObstacles = []
-    for obs in allObstacles:
-      tmp = getPositionOfImage(obs[0], screenshot)
-      if(len(tmp)>0):
-        for ob in tmp:
-          if(ob[0]-68 > 0):
-            foundObstacles += [[ob, ob[0]-68]]
-          # if((ob[0]-68 < closestObstacleDistance) and (ob[0]-68>0)):
-          #   closestObstacleDistance = ob[0]-68
-          #   closestObstaclePosition = ob[1]
-        resultImage = generateSearchImage(obs[0], resultImage, obs[1])
-    
-    ## save image for found obstacles
-    saveImage(resultImage, processingFolder+'obstacles.jpg')
-    
-    foundObstacles = sorted(foundObstacles, key=lambda l:l[1])
-    
-    # find closest object
-    if(len(foundObstacles)>=1):
-      close1Distance = foundObstacles[0][1]
-      close1Position = foundObstacles[0][0][1]
-    # find next closest
-    if(len(foundObstacles)>=2):
-      close2Distance = foundObstacles[1][1]
-      close2Position = foundObstacles[1][0][1]
-    
-    # ## check for object in from of dino
-    # jumparea = cropImage(screenshot, 68, 85, 68+120, 85+36)
-    # # saveImage(jumparea, processingFolder+'jumparea.jpg')
-    # colors = getColorsFromImage(jumparea)
-    # if(len(colors)>1):
-    #   window.send_keys(Keys.SPACE)
+    close1Distance, close1Position, close2Distance, close2Position = findObstacles(allObstacles, screenshot, resultImage)
 
-    ## check distance to closest object
-    if(close1Distance<150):
+    ai = shouldJump(
+      (datetime.now() - startTime).total_seconds(),
+      dinoPosition,
+      close1Distance,
+      close1Position,
+      close2Distance,
+      close2Position
+    )
+    if(ai==1):
       window.send_keys(Keys.SPACE)
-
 
     ## print outs
     os.system('cls')

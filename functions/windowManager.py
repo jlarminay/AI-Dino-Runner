@@ -9,7 +9,7 @@ def createWindow():
   driver = webdriver.Edge()
   driver.set_script_timeout(10)
   driver.get("https://trex-runner.com")
-  driver.set_window_size(1000, 750)
+  driver.set_window_size(1000, 600)
 
   # set window to overflow hidden to stop flickering
   driver.execute_script("document.getElementsByTagName('body')[0].style.overflow = 'hidden'")
