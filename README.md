@@ -1,6 +1,6 @@
 # AI Dino Runner
 
-This is a small program I built to play the famous Google Chrome Dino game using AI. A cross browser version can be found at https://trex-runner.com/.
+This is a small program I built to play the famous Google Chrome Dino game using AI. A cross browser version can be found at <https://trex-runner.com/>.
 
 Currently the program doesn't use actual AI, it only scans if an object is in front of the dino to jump.
 
@@ -8,8 +8,9 @@ Currently the program doesn't use actual AI, it only scans if an object is in fr
 ## Getting Started
 
 Requirements:
-* `pip 22.3.1`
-* `python 3.10.0`
+* `pip ~22.3.1`
+* `python ~3.10.0`
+* `microsoft edge ~108.0.1462.54`
 
 You can start by installing all required dependancies using pip:
 ```bash

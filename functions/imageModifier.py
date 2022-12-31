@@ -2,7 +2,7 @@ import cv2
 import numpy
 from PIL import Image, ImageGrab
 
-ImageSearchThreshold = 0.95
+ImageSearchThreshold = 0.90
 
 # def screenGrab(topleft,topright,bottomleft,bottomright):
 #   screen = ImageGrab.grab(bbox=(
@@ -47,6 +47,7 @@ def getPositionOfImage(needle, haystack):
   results = []
   for pt in zip(*loc[::-1]):
     results.append(pt)
+  # return results, h
   return results
 
 def generateSearchImage(needle, haystack, color):
