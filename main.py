@@ -3,6 +3,9 @@ import time
 from datetime import datetime
 from dotenv import load_dotenv
 
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 from functions.imageModifier import *
 from functions.fileWriter import *
 from functions.windowManager import *
@@ -68,7 +71,7 @@ while(games < maxGames):
     ]
     close1Distance, close1Position, close2Distance, close2Position = findObstacles(allObstacles, screenshot, resultImage)
 
-    ai = shouldJump(
+    should_jump, hold_time = shouldJump(
       (datetime.now() - startTime).total_seconds(),
       dinoPosition,
       close1Distance,
@@ -76,8 +79,12 @@ while(games < maxGames):
       close2Distance,
       close2Position
     )
-    if(ai==1):
-      window.send_keys(Keys.SPACE)
+    if(should_jump > 0):
+      actions = ActionChains(driver)
+      actions.key_down(Keys.SPACE)
+      actions.pause(hold_time)
+      actions.key_up(Keys.SPACE)
+      actions.perform()
 
     ## print outs
     os.system('cls')
@@ -86,6 +93,9 @@ while(games < maxGames):
     print('i: '+str(i))
     print('score: '+str((datetime.now() - startTime).total_seconds()))
     print('avg fps: '+str(i / (datetime.now() - startTime).total_seconds()))
+    print('')
+    print('should_jump: '+str(should_jump))
+    print('hold_time: '+str(hold_time))
     print('')
     # print('colors: '+str(len(colors)))
     # print('')

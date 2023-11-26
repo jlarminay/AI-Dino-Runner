@@ -1,9 +1,5 @@
+import random
 
-# Returns if the dino should jump
-# 
-# Possibles returns:
-#  - 0 - dino should do nothing
-#  - 1 - dino should jump
 def shouldJump(
   time, 
   dinoPosition, 
@@ -21,6 +17,7 @@ def shouldJump(
 
   ## check distance to closest object
   if(close1Distance<150):
-    return 1
+    hold_time = round(random.uniform(0.0, 0.5), 3)
+    return True, hold_time
   
-  return 0
+  return False, 0
