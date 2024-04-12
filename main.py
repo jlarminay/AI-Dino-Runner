@@ -101,7 +101,7 @@ while(games < maxGames):
     # print('')
     # print('closestObstacleDistance: '+str(closestObstacleDistance))
     # print('closestObstaclePosition: '+str(closestObstaclePosition))
-    print('')
+    # print('')
     print('timeElapsed: '+str((datetime.now() - startTime).total_seconds()))
     print('dinoPosition: '+str(dinoPosition))
     print('close1Distance: '+str(close1Distance))

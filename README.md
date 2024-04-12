@@ -10,8 +10,8 @@ Currently the program doesn't use actual AI, it only scans if an object is in fr
 
 Requirements:
 
-* `pip ~23.3.1`
-* `python ~3.12.0`
+* `pip ~24.0`
+* `python ~3.12`
 * `microsoft edge ~108.0.1462.54`
 
 You can start by installing all required dependencies using pip and venv:

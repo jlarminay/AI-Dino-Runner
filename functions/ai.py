@@ -17,7 +17,8 @@ def shouldJump(
 
   ## check distance to closest object
   if(close1Distance<150):
-    hold_time = round(random.uniform(0.0, 0.5), 3)
+    # hold_time = round(random.uniform(0.0, 0.5), 3)
+    hold_time = 0.01
     return True, hold_time
   
   return False, 0
