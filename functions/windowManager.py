@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 import cv2
 
 def createWindow():
@@ -21,3 +23,10 @@ def createWindow():
 def screenGrab(window, filename):
   window.screenshot(filename)
   return cv2.imread(filename)
+
+def pressSpace(driver, hold_time):
+    actions = ActionChains(driver)
+    actions.key_down(Keys.SPACE)
+    actions.pause(hold_time)
+    actions.key_up(Keys.SPACE)
+    actions.perform()
